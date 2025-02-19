@@ -59,7 +59,7 @@ export function TurfDialog({ turf, open, onOpenChange }) {
           <Button onClick={() => onOpenChange(false)} variant="outline">
             Close
           </Button>
-          <Button variant="default" className="pt-3">
+          <Button variant="default" className="mb-3">
             Book Now
           </Button>
         </DialogFooter>
