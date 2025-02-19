@@ -29,6 +29,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { StarRating } from "@/components/star-rating";
+import { TurfDialog } from "@/components/turf-dialog";
 
 export default function LandingPage() {
   const [selectedTurf, setSelectedTurf] = useState(null);
@@ -704,62 +705,11 @@ export default function LandingPage() {
         </div>
       </footer>
 
-      <Dialog
+      <TurfDialog
+        turf={selectedTurf}
         open={selectedTurf !== null}
-        onOpenChange={() => setSelectedTurf(null)}
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{selectedTurf?.name}</DialogTitle>
-            <DialogDescription>
-              <div className="flex items-center text-gray-500 mt-1">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span>
-                  {selectedTurf?.location.address},{" "}
-                  {selectedTurf?.location.city}
-                </span>
-              </div>
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-4">
-            <Image
-              src="/turf-2.jpeg"
-              alt={selectedTurf?.name || "Turf"}
-              width={400}
-              height={300}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
-            <p className="text-gray-700 mb-2">{selectedTurf?.description}</p>
-            <div className="flex justify-between items-center mb-4">
-              <p className="text-primary font-semibold mb-2">
-                ${selectedTurf?.price}/hour
-              </p>
-              <div className="flex items-center gap-2 mt-1">
-                <StarRating
-                  rating={selectedTurf?.rating}
-                  totalReviews={selectedTurf?.totalReviews}
-                />
-              </div>
-            </div>
-            <h4 className="font-semibold mb-2">Facilities:</h4>
-            <ul className="list-disc list-inside">
-              {selectedTurf?.facilities.map((facility, index) => (
-                <li key={index} className="text-gray-700">
-                  {facility}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <DialogFooter>
-            <Button onClick={() => setSelectedTurf(null)} variant="outline">
-              Close
-            </Button>
-            <Button variant="default" className="pt-3">
-              Book Now
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+        onOpenChange={(open) => setSelectedTurf(open ? selectedTurf : null)}
+      />
     </div>
   );
 }
