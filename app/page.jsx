@@ -42,6 +42,11 @@ export default function LandingPage() {
       facilities: ["Floodlights", "Changing Rooms", "Parking"],
       rating: 4.5,
       totalReviews: 128,
+      location: {
+        address: "123 Green Valley Road",
+        city: "Kampala",
+        coordinates: { lat: 51.5074, lng: -0.1278 },
+      },
     },
     {
       id: 2,
@@ -52,6 +57,11 @@ export default function LandingPage() {
       facilities: ["Floodlights", "Cafe", "Public Transport"],
       rating: 4.5,
       totalReviews: 128,
+      location: {
+        address: "123 Central Road",
+        city: "Kampala",
+        coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+      },
     },
     {
       id: 3,
@@ -61,6 +71,11 @@ export default function LandingPage() {
       facilities: ["Spectator Seating", "Barbecue Area", "Parking"],
       rating: 4.5,
       totalReviews: 128,
+      location: {
+        address: "123 Riverside Road",
+        city: "Kampala",
+        coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+      },
     },
     {
       id: 4,
@@ -70,6 +85,11 @@ export default function LandingPage() {
       facilities: ["Floodlights", "Gym", "Cafe", "Changing Rooms"],
       rating: 4.5,
       totalReviews: 128,
+      location: {
+        address: "Arena Street",
+        city: "Kampala",
+        coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+      },
     },
     {
       id: 5,
@@ -80,6 +100,11 @@ export default function LandingPage() {
       facilities: ["Basic Changing Rooms", "Parking"],
       rating: 4.5,
       totalReviews: 128,
+      location: {
+        address: "123 Mountain View Road",
+        city: "Kampala",
+        coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+      },
     },
     {
       id: 6,
@@ -89,6 +114,11 @@ export default function LandingPage() {
       facilities: ["Smart Lighting", "Performance Tracking", "Changing Rooms"],
       rating: 4.5,
       totalReviews: 128,
+      location: {
+        address: "Green Valley Road",
+        city: "Kampala",
+        coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+      },
     },
   ];
 
@@ -355,6 +385,13 @@ export default function LandingPage() {
                         rating={turf.rating}
                         totalReviews={turf.totalReviews}
                       />
+                    </div>
+                    {/* Add location display */}
+                    <div className="flex items-center text-gray-500 mb-3">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      <span className="text-sm">
+                        {turf.location.address}, {turf.location.city}
+                      </span>
                     </div>
                     <p className="text-gray-600 mb-4">{turf.description}</p>
                     <div className="flex items-center justify-between">
@@ -675,7 +712,13 @@ export default function LandingPage() {
           <DialogHeader>
             <DialogTitle>{selectedTurf?.name}</DialogTitle>
             <DialogDescription>
-              Detailed information about {selectedTurf?.name}
+              <div className="flex items-center text-gray-500 mt-1">
+                <MapPin className="w-4 h-4 mr-2" />
+                <span>
+                  {selectedTurf?.location.address},{" "}
+                  {selectedTurf?.location.city}
+                </span>
+              </div>
             </DialogDescription>
           </DialogHeader>
           <div className="py-4">
