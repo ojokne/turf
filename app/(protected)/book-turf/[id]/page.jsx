@@ -20,7 +20,8 @@ import { Separator } from "@/components/ui/separator";
 import { Clock, Users, CalendarDays } from "lucide-react";
 
 // Import turfs data
-import { turfs } from "../page";
+// import { turfs } from "../page";
+import { StarRating } from "@/components/star-rating";
 
 const mockBookings = [
   {
@@ -37,6 +38,93 @@ const mockBookings = [
   },
 ];
 
+const turfs = [
+  {
+    id: 1,
+    name: "Green Valley Turf",
+    price: 50,
+    description: "A lush, well-maintained turf with excellent drainage.",
+    facilities: ["Floodlights", "Changing Rooms", "Parking"],
+    rating: 4.5,
+    totalReviews: 128,
+    location: {
+      address: "123 Green Valley Road",
+      city: "Kampala",
+      coordinates: { lat: 51.5074, lng: -0.1278 },
+    },
+  },
+  {
+    id: 2,
+    name: "City Central Field",
+    price: 55,
+    description:
+      "Located in the heart of the city, perfect for after-work games.",
+    facilities: ["Floodlights", "Cafe", "Public Transport"],
+    rating: 4.5,
+    totalReviews: 128,
+    location: {
+      address: "123 Central Road",
+      city: "Kampala",
+      coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+    },
+  },
+  {
+    id: 3,
+    name: "Riverside Pitch",
+    price: 45,
+    description: "A scenic turf by the river with a great atmosphere.",
+    facilities: ["Spectator Seating", "Barbecue Area", "Parking"],
+    rating: 4.5,
+    totalReviews: 128,
+    location: {
+      address: "123 Riverside Road",
+      city: "Kampala",
+      coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+    },
+  },
+  {
+    id: 4,
+    name: "Sunset Arena",
+    price: 60,
+    description: "Premium turf with state-of-the-art facilities.",
+    facilities: ["Floodlights", "Gym", "Cafe", "Changing Rooms"],
+    rating: 4.5,
+    totalReviews: 128,
+    location: {
+      address: "Arena Street",
+      city: "Kampala",
+      coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+    },
+  },
+  {
+    id: 5,
+    name: "Mountain View Ground",
+    price: 40,
+    description: "A budget-friendly option with a beautiful mountain backdrop.",
+    facilities: ["Basic Changing Rooms", "Parking"],
+    rating: 4.5,
+    totalReviews: 128,
+    location: {
+      address: "123 Mountain View Road",
+      city: "Kampala",
+      coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+    },
+  },
+  {
+    id: 6,
+    name: "Tech Park Turf",
+    price: 65,
+    description: "High-tech turf with advanced booking system and analytics.",
+    facilities: ["Smart Lighting", "Performance Tracking", "Changing Rooms"],
+    rating: 4.5,
+    totalReviews: 128,
+    location: {
+      address: "Green Valley Road",
+      city: "Kampala",
+      coordinates: { lat: 51.5074, lng: -0.1278 }, // Optional for map integration
+    },
+  },
+];
 export default function BookingPage() {
   const { id } = useParams();
   const turf = turfs.find((t) => t.id.toString() === id);
@@ -96,7 +184,7 @@ export default function BookingPage() {
   if (!turf) return <div>Turf not found</div>;
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-200 min-h-screen">
       <div className="container max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -122,7 +210,7 @@ export default function BookingPage() {
             </div>
 
             {/* Quick Info */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex items-center gap-2 text-gray-600">
                   <Clock className="h-4 w-4" />
@@ -137,14 +225,15 @@ export default function BookingPage() {
                 </div>
                 <p className="mt-1 font-semibold">22 players</p>
               </div>
-              <div className="bg-white p-4 rounded-lg shadow-sm">
+              <div className="bg-white p-4 rounded-lg shadow-sm sm:col-span-2 lg:col-span-1">
                 <div className="flex items-center gap-2 text-gray-600">
                   <Star className="h-4 w-4" />
                   <span>Rating</span>
                 </div>
-                <p className="mt-1 font-semibold">
-                  {turf.rating} ({turf.totalReviews})
-                </p>
+                <StarRating
+                  rating={turf?.rating}
+                  totalReviews={turf?.totalReviews}
+                />
               </div>
             </div>
 
