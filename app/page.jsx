@@ -145,12 +145,7 @@ export default function LandingPage() {
               >
                 Turfs
               </Link>
-              <Link
-                href="/pricing"
-                className="text-sm font-medium text-gray-500 hover:text-primary transition-colors"
-              >
-                Pricing
-              </Link>
+             
               <Link
                 href="/contact"
                 className="text-sm font-medium text-gray-500 hover:text-primary transition-colors"
@@ -261,16 +256,9 @@ export default function LandingPage() {
                   size="lg"
                   className="bg-primary text-white hover:bg-primary/90 w-full sm:w-auto"
                 >
-                  <Link href="/book">Book Now</Link>
+                  <Link href="/book-turf">Book Now</Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                >
-                  <Link href="/turfs">Explore Turfs</Link>
-                </Button>
+                
               </div>
             </div>
           </div>
