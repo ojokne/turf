@@ -3,8 +3,6 @@
 import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { format, addHours, parse } from "date-fns";
-import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -19,8 +17,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Clock, Users, CalendarDays } from "lucide-react";
 
-// Import turfs data
-// import { turfs } from "../page";
 import { StarRating } from "@/components/star-rating";
 
 const mockBookings = [
@@ -134,52 +130,7 @@ export default function BookingPage() {
   const [hours, setHours] = useState("1");
   const [isLoading, setIsLoading] = useState(false);
 
-  const availableSlots = useMemo(() => {
-    const dateStr = format(date, "yyyy-MM-dd");
-    const allTimes = [
-      "08:00",
-      "09:00",
-      "10:00",
-      "11:00",
-      "12:00",
-      "13:00",
-      "14:00",
-      "15:00",
-      "16:00",
-      "17:00",
-      "18:00",
-      "19:00",
-      "20:00",
-      "21:00",
-    ];
-
-    return allTimes.filter((time) => {
-      const startDateTime = parse(time, "HH:mm", new Date());
-      const endDateTime = addHours(startDateTime, parseInt(hours));
-
-      return !mockBookings.some((booking) => {
-        if (booking.turfId.toString() !== id || booking.date !== dateStr) {
-          return false;
-        }
-
-        const bookingStart = parse(booking.startTime, "HH:mm", new Date());
-        const bookingEnd = parse(booking.endTime, "HH:mm", new Date());
-
-        return (
-          (startDateTime >= bookingStart && startDateTime < bookingEnd) ||
-          (endDateTime > bookingStart && endDateTime <= bookingEnd) ||
-          (startDateTime <= bookingStart && endDateTime >= bookingEnd)
-        );
-      });
-    });
-  }, [id, date, hours]);
-
-  const getEndTime = () => {
-    if (!startTime) return null;
-    const start = parse(startTime, "HH:mm", new Date());
-    const end = addHours(start, parseInt(hours));
-    return format(end, "HH:mm");
-  };
+  
 
   if (!turf) return <div>Turf not found</div>;
 
@@ -275,70 +226,7 @@ export default function BookingPage() {
                   <Separator />
                 </div>
 
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="font-medium flex items-center gap-2">
-                      <CalendarDays className="h-4 w-4" />
-                      Select Date
-                    </label>
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      className="rounded-md border"
-                      disabled={(date) => date < new Date()}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="font-medium flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      Start Time
-                    </label>
-                    <Select value={startTime} onValueChange={setStartTime}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select start time" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {availableSlots.length > 0 ? (
-                          availableSlots.map((time) => (
-                            <SelectItem key={time} value={time}>
-                              {time}
-                            </SelectItem>
-                          ))
-                        ) : (
-                          <SelectItem value="" disabled>
-                            No available slots
-                          </SelectItem>
-                        )}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="font-medium">Duration</label>
-                    <Select value={hours} onValueChange={setHours}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select duration" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {[1, 2, 3, 4].map((h) => (
-                          <SelectItem key={h} value={h.toString()}>
-                            {h} {h === 1 ? "hour" : "hours"}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {startTime && (
-                    <div className="bg-muted rounded-lg p-4">
-                      <p className="text-sm text-muted-foreground">
-                        Your session: {startTime} - {getEndTime()}
-                      </p>
-                    </div>
-                  )}
-                </div>
+               
 
                 <Separator />
 
