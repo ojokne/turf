@@ -406,7 +406,7 @@ export default function LandingPage() {
                 size="lg"
                 className="border-primary text-primary hover:bg-primary/10"
               >
-                <Link href="/turfs">View All Turfs</Link>
+                <Link href="/book-turf">View All Turfs</Link>
               </Button>
             </div>
           </div>

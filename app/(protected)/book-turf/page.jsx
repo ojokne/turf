@@ -138,7 +138,7 @@ export default function BookTurfPage() {
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
       <div className="container max-w-7xl mx-auto px-4 py-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">
           {/* Filters - Only visible on large screens */}
