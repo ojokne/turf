@@ -62,24 +62,21 @@ export default function UserDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-100">
       <div className="container max-w-7xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="relative mb-12 bg-white rounded-2xl p-8  overflow-hidden shadow-lg">
           <div className="relative z-10 flex items-center gap-6">
-            <div className="h-24 w-24 rounded-full bg-primary/10 backdrop-blur-sm flex items-center justify-center border-2 border-white/20">
-              <User className="h-12 w-12 text-primary" />
+            <div className="md:h-24 md:w-24  p-3 rounded-full bg-primary/10 backdrop-blur-sm flex items-center justify-center border-2 border-white/20">
+              <User className="h-6 w-6 md:h-12 md:w-12  text-primary" />
             </div>
             <div>
               <h1 className="text-3xl font-bold mb-2">
                 Welcome back, John! 👋
               </h1>
-              <p className="text-primary/80">
-                Ready for your next game?
-              </p>
+              <p className="text-primary/80">Ready for your next game?</p>
             </div>
           </div>
-          
         </div>
 
         {/* Stats Grid */}
@@ -144,21 +141,23 @@ export default function UserDashboard() {
         <div className="mb-12 relative overflow-hidden bg-gradient-to-r from-green-500 to-green-600 rounded-2xl">
           <div className="relative z-10 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-white space-y-4">
-              <h2 className="text-2xl md:text-3xl font-bold">Ready for Your Next Match?</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                Ready for Your Next Match?
+              </h2>
               <p className="text-white/90 max-w-md">
-                Book your preferred turf now and enjoy the game with your team. Multiple locations and time slots available.
+                Book your preferred turf now and enjoy the game with your team.
+                Multiple locations and time slots available.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
                 className="bg-white text-green-600 hover:bg-green-50 hover:text-green-700"
-                onClick={() => router.push('/book-turf')}
+                onClick={() => router.push("/book-turf")}
               >
                 Book a Turf Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              
             </div>
           </div>
         </div>
